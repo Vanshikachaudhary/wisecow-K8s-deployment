@@ -1,4 +1,34 @@
+<<<<<<< HEAD
 
 
 
 
+=======
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wisecow-deployment
+  labels:
+    app: wisecow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wisecow
+  template:
+    metadata:
+      labels:
+        app: wisecow
+    spec:
+      containers:
+        - name: wisecow
+          image: IMAGE_TAG
+          ports:
+            - containerPort: 4499
+
+
+            
+
+
+
+>>>>>>> e5cbd78174390a8ff77d993095866eaa71ec3a2b
