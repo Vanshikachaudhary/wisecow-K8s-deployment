@@ -46,13 +46,13 @@ jobs:
             #1 CLONE OR PULL
             cd /home/ubuntu
 
-            if [ ! -d "wisecow-application" ]; then
-              echo "Cloning wisecow-application repository..."
-              git clone https://github.com/Vanshikachaudhary/wisecow-application.git
+            if [ ! -d "wisecow-K8s-deployment" ]; then
+              echo "Cloning wisecow-K8s-deployment repository..."
+              git clone https://github.com/Vanshikachaudhary/wisecow-K8s-deployment.git
             else
               echo "Project directory exists. Pulling latest changes..."
               
-              cd wisecow-application
+              cd wisecow-K8s-deployment
               
               git reset --hard HEAD
               git clean -fd
@@ -60,16 +60,16 @@ jobs:
               git pull origin main
             fi
 
-            cd /home/ubuntu/wisecow-application
+            cd /home/ubuntu/wisecow-K8s-deployment
             dos2unix wisecow.sh
 
             #2 IMAGE UPDATER
             echo "Updating image tag in deployment.yaml..."
-            cd /home/ubuntu/wisecow-application
+            cd /home/ubuntu/wisecow-K8s-deployment
             chmod +x image-updater.sh
             bash image-updater.sh "$IMAGE_TAG"
 
             #3 DEPLOYMENT
             echo "Deploying application on Kubernetes..."
-            kubectl apply -f /home/ubuntu/wisecow-application/k8s/deployment.yaml || { echo "Error applying deployment"; exit 1; }
-            kubectl apply -f /home/ubuntu/wisecow-application/k8s/service.yaml || { echo "Error applying service"; exit 1; }
+            kubectl apply -f /home/ubuntu/wisecow-K8s-deployment/K8s/deployment.yaml || { echo "Error applying deployment"; exit 1; }
+            kubectl apply -f /home/ubuntu/wisecow-K8s-deployment/K8s/service.yaml || { echo "Error applying service"; exit 1; }
