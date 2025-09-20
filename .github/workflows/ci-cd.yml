@@ -48,7 +48,7 @@ jobs:
 
             if [ ! -d "wisecow-K8s-deployment" ]; then
               echo "Cloning wisecow-K8s-deployment repository..."
-              git clone git clone https://Vanshikachaudhary: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@github.com/Vanshikachaudhary/wisecow-K8s-deployment.git
+              git clone https://github.com/Vanshikachaudhary/wisecow-K8s-deployment.git
             else
               echo "Project directory exists. Pulling latest changes..."
               
